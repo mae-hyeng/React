@@ -123,6 +123,7 @@ function App() {
   };
 
   if (isLoading) {
+    setIsLoading(false);
     return <div>데이터 로딩중입니다...</div>;
   }
 

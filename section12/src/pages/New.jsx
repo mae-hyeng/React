@@ -2,12 +2,15 @@ import Editor from "../components/Editor";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DiaryDispatchContext } from "../App";
+import usepageTitle from "../hooks/usePageTitle";
 
 const New = () => {
   const { onCreate } = useContext(DiaryDispatchContext);
   const nav = useNavigate();
+
+  usepageTitle("새 일기 작성");
 
   const onSubmit = (input) => {
     onCreate(input.createdDate.getTime(), input.emotionId, input.content);
