@@ -1,0 +1,10 @@
+.App {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.App > input[type="button"] {
+  width: 120px;
+  padding: 10px 20px;
+}
