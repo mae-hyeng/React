@@ -1,0 +1,15 @@
+.Background {
+  height: 85vh;
+  padding: 20px 20px;
+}
+
+.Background .Folder_wrapper {
+  width: 460px;
+  height: 199.2px;
+  display: grid;
+  grid-template-columns: repeat(4, 91.6px);
+  grid-template-rows: repeat(2, 91.6px);
+  column-gap: 14px;
+  row-gap: 16px;
+  justify-content: center;
+}

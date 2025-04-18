@@ -1,0 +1,33 @@
+.Header {
+  display: flex;
+  width: 100%;
+  height: 5vh;
+  background-color: beige;
+}
+
+.Header > div {
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.Header img {
+  width: 25px;
+  height: 25px;
+  gap: 10px;
+}
+
+.Header .left_div {
+  width: 25%;
+  justify-content: flex-start;
+}
+
+.Header .center_div {
+  width: 50%;
+  justify-content: center;
+}
+
+.Header .right_div {
+  width: 25%;
+  justify-content: flex-end;
+}
