@@ -1,23 +1,19 @@
 import "./ItemList.css";
+import appstore from "./../assets/appstore_logo.png";
 
 const ItemList = () => {
   return (
+    // 폴더 이름에 맞는 이미지들만 반복문 돌려서 표시하기
     <div className="ItemList">
-      <div className="ItemList_1">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-      </div>
-      <div className="ItemList_2">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-      </div>
-      <div className="ItemList_3">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-      </div>
+      <img src={appstore} />
+      <img src={appstore} />
+      <img src={appstore} />
+      <img src={appstore} />
+      <img src={appstore} />
+      <img src={appstore} />
+      <img src={appstore} />
+      <img src={appstore} />
+      <img src={appstore} />
     </div>
   );
 };

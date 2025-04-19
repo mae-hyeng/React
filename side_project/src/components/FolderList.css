@@ -1,19 +1,28 @@
-.FolderList > div {
+.FolderList {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  transition: transform 0.4s ease-in-out;
+  position: relative;
 }
 
-.FolderList .FolderList_icons {
+.FolderList_icons {
+  width: 60px;
+  height: 60px;
+  padding: 6px;
   border: 1px solid black;
-  padding: 20px 20px;
-  border-radius: 20px;
-  width: 50px;
-  height: 50px;
+  border-radius: 16px;
+  background-color: rgba(220, 220, 216, 0.5);
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(220 220 216);
 }
 
-.FolderList .FolderList_names {
+.FolderList_names {
   color: white;
-  justify-content: center;
+  font-size: 13px;
+  text-align: center;
 }
