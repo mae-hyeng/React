@@ -8,6 +8,9 @@ const Background = () => {
   const containerRef = useRef(null);
 
   const onClickFolder = (e, id) => {
+    if (activeId) {
+      return closeFolder();
+    }
     const rect = e.currentTarget.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;

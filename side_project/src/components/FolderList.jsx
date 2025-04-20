@@ -2,9 +2,15 @@ import "./FolderList.css";
 import ItemList from "./ItemList";
 
 const FolderList = ({ id, onClick, isActive, origin, containerRef }) => {
-  const handleClick = (e) => {
+  const folderClick = (e) => {
     e.stopPropagation(); // 부모 클릭 막기
+    changeDiv(e);
     onClick(e, id);
+  };
+
+  const changeDiv = (e) => {
+    const nameDiv = e.target;
+    console.log(nameDiv);
   };
 
   const style = {};
@@ -16,20 +22,20 @@ const FolderList = ({ id, onClick, isActive, origin, containerRef }) => {
     const offsetX = centerX - origin.x;
     const offsetY = centerY - origin.y;
 
-    style.transform = `translate(${offsetX}px, ${offsetY}px) scale(2)`;
+    style.transform = `translate(${offsetX}px, ${offsetY}px) scale(4.5)`;
     style.zIndex = 1000;
   }
 
   return (
     <div
       className={`FolderList ${isActive ? "active" : ""}`}
-      onClick={handleClick}
+      onClick={folderClick}
       style={style}
     >
       <div className="FolderList_icons">
-        <ItemList />
+        <ItemList isActive={isActive} />
       </div>
-      <div className="FolderList_names">이름</div>
+      <div className={`FolderList_names`}>이름</div>
     </div>
   );
 };

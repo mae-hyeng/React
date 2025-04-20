@@ -17,3 +17,7 @@
   border-radius: 6px;
   overflow: hidden;
 }
+
+.ItemList > img.touched {
+  border-radius: 3px;
+}
