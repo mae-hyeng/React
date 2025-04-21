@@ -3,12 +3,21 @@ import "./Background.css";
 import FolderList from "./FolderList";
 import { getImageListByType } from "../utils/getImageListByType";
 
-const FolderName = ["엔터테이먼트", "게임", "금융", "잡동사니", "여행"];
+const mokeFolderName = ["엔터테이먼트", "게임", "금융", "잡동사니", "여행"];
 
 const Background = () => {
   const [activeId, setActiveId] = useState(null);
   const [folderPositions, setFolderPositions] = useState({});
   const containerRef = useRef(null);
+
+  // Todo 배경 길게 눌렀을 때 폴더추가 버튼 생성.
+  const [FolderName, setFolderName] = useState(mokeFolderName);
+
+  const onLongPressBackground = () => {
+    setTimeout(() => {
+      console.log("길게 누름");
+    }, 600);
+  };
 
   const onClickFolder = (e, id) => {
     if (activeId) {
@@ -24,7 +33,12 @@ const Background = () => {
   const closeFolder = () => setActiveId(null);
 
   return (
-    <div className="Background" onClick={closeFolder} ref={containerRef}>
+    <div
+      className="Background"
+      onMouseDown={onLongPressBackground}
+      onClick={closeFolder}
+      ref={containerRef}
+    >
       <div className="Folder_wrapper">
         {FolderName.map((name, idx) => {
           const img = getImageListByType(name.toLowerCase());
