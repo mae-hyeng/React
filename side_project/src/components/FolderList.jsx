@@ -1,7 +1,15 @@
 import "./FolderList.css";
 import ItemList from "./ItemList";
 
-const FolderList = ({ id, onClick, isActive, origin, containerRef }) => {
+const FolderList = ({
+  id,
+  onClick,
+  isActive,
+  name,
+  origin,
+  containerRef,
+  img,
+}) => {
   const folderClick = (e) => {
     e.stopPropagation(); // 부모 클릭 막기
     changeDiv(e);
@@ -33,9 +41,9 @@ const FolderList = ({ id, onClick, isActive, origin, containerRef }) => {
       style={style}
     >
       <div className="FolderList_icons">
-        <ItemList isActive={isActive} />
+        <ItemList isActive={isActive} img={img} />
       </div>
-      <div className={`FolderList_names`}>이름</div>
+      <div className={`FolderList_names`}>{name}</div>
     </div>
   );
 };
