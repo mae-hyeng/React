@@ -11,14 +11,8 @@ const FolderList = ({
   img,
 }) => {
   const folderClick = (e) => {
-    e.stopPropagation(); // 부모 클릭 막기
-    changeDiv(e);
+    e.stopPropagation();
     onClick(e, id);
-  };
-
-  const changeDiv = (e) => {
-    const nameDiv = e.target;
-    console.log(nameDiv);
   };
 
   const style = {};
@@ -40,10 +34,28 @@ const FolderList = ({
       onClick={folderClick}
       style={style}
     >
-      <div className="FolderList_icons">
-        <ItemList isActive={isActive} img={img} />
-      </div>
-      <div className={`FolderList_names`}>{name}</div>
+      {img.length === 1 ? (
+        <img
+          className={`single-icon ${isActive ? "touched" : ""}`}
+          src={img[0]}
+        />
+      ) : (
+        <div className="FolderList_icons">
+          <ItemList isActive={isActive} img={img} />
+        </div>
+      )}
+      {img.length === 1 ? (
+        <div className={`FolderList_names`}>
+          {decodeURIComponent(
+            img[0]
+              .split("/")
+              .pop()
+              .replace(/\.[^/.]+$/, "")
+          )}
+        </div>
+      ) : (
+        <div className={`FolderList_names`}>{name}</div>
+      )}
     </div>
   );
 };

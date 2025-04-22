@@ -7,22 +7,22 @@ const mokeFolderName = ["엔터테이먼트", "게임", "금융", "잡동사니"
 
 const Background = () => {
   const [activeId, setActiveId] = useState(null);
-  const [folderPositions, setFolderPositions] = useState({});
+  const [folderPositions, setFolderPositions] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
+
+  // 현재 마우스 위치 담을 state
 
   // Todo 배경 길게 눌렀을 때 폴더추가 버튼 생성.
   const [FolderName, setFolderName] = useState(mokeFolderName);
 
-  const onLongPressBackground = () => {
-    setTimeout(() => {
-      console.log("길게 누름");
-    }, 600);
-  };
-
   const onClickFolder = (e, id) => {
-    if (activeId) {
-      return closeFolder();
+    if (
+      e.target.classList.contains("single-icon") ||
+      e.target.classList.contains("FolderList_names")
+    ) {
+      return;
     }
+    if (activeId) return closeFolder();
     const rect = e.currentTarget.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
@@ -30,15 +30,12 @@ const Background = () => {
     activeId === id ? closeFolder() : setActiveId(id);
   };
 
-  const closeFolder = () => setActiveId(null);
+  const closeFolder = () => {
+    setActiveId(null);
+  };
 
   return (
-    <div
-      className="Background"
-      onMouseDown={onLongPressBackground}
-      onClick={closeFolder}
-      ref={containerRef}
-    >
+    <div className="Background" onClick={closeFolder} ref={containerRef}>
       <div className="Folder_wrapper">
         {FolderName.map((name, idx) => {
           const img = getImageListByType(name.toLowerCase());
