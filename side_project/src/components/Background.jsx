@@ -3,7 +3,7 @@ import "./Background.css";
 import FolderList from "./FolderList";
 import { getImageListByType } from "../utils/getImageListByType";
 
-const mokeFolderName = ["엔터테이먼트", "게임", "금융", "잡동사니", "여행"];
+const mokeFolderName = ["엔터테인먼트", "게임", "금융", "잡동사니", "여행"];
 
 const Background = () => {
   const [activeId, setActiveId] = useState(null);
