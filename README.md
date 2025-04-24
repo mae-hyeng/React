@@ -40,8 +40,93 @@ SEO | 매우 좋음 | 어려움 | 좋음 | 어려움
    - 전역처럼 데이터를 전달하는 시스템
    - 부모 컴포넌트가 트리 아래에 있는 모든 컴포넌트 깊이에 상관없이 props를 통해 전달하지 않고도 사용할 수 있게 해준다.
    - 이를 통해 Prop drilling을 방지할 수 있다.
-  
-   - **********************************************************************************************************************
+2. createContext(defaultValue)
+   - Context 객체를 생성하는 함수.
+   - React 트리 안에서 데이터를 전역처럼 공유할 수 있는 구조를 만드는 것.
+   - defaultValue는 Provider가 없을 경우에만 fallback으로 사용된다.
+   - 예시
+   ```jsx
+   // App.jsx
+   export const AnyContext = createContext("any");
+   // Context 생성 후 Provider 설정 X
+
+   // Button.jsx
+   const Button = () => {
+      const any = useContext(AnyContext);
+      return <div>any ? {any}</div>
+   }
+
+   // 의 결과는 Provider가 없으니까 createContext("any")에서 설정한 "any"가 fallback값으로 사용되기 때문에 any ? any 가 출력된다.
+   // 반대로 Provider가 있을 경우
+   <AnyContext.Provider value="anyany!">
+      <Button />
+   </AnyContext.Provider>
+   // 이 경우에는 "anyany!"가 실제로 사용되므로 기본값인 "any"는 완전히 무시된다.
+   ```
+   - 사용 예제
+   ```jsx
+   const AnyContext = createContext(value);
+   ```
+   - Provider로 컴포넌트를 감싸서 데이터를 전달한다.
+   ```jsx
+   return (
+      <AnyContext.Provider value={value}>
+         <div>
+            ---
+         </div>
+      </AnyContext.Provider>
+   )
+   ```
+4. useContext(AnyContext)
+    - 컴포넌트에서 Context를 읽고 사용할 수 있는 Hook 이다.
+    - Context의 현재 value를 읽고 컴포넌트에서 사용하게 해준다.
+    - 매개변수 AnyContext에는 createContext로 생성한 Context를 담아준다.
+   ```jsx
+   const data = useContext(AnyContext);
+   ```
+5. 전체적인 흐름
+   ```jsx
+   // 1. Context 생성
+   // 임시데이터 data 생성
+   const data = [
+     { id: 0, name: '0번', content: '0번째' },
+     { id: 1, name: '1번', content: '1번째' },
+   ]
+   
+   export const AnyContext = createContext(null);
+   // export const AnyContext = createContext(data); // 보통 null, {} 로 기본값을 설정하고 실제 데이터는 Provider에서 넣어준다
+   // null 또는 {} 일 경우 : 추후에 context 자체를 분리된 모듈로 관리하기가 쉽다.
+   // data(즉시 사용하는 경우) : 작은 프로젝트나, 샘플 코드에서는 빠르고 간편하지만, 실제 Provider에서 빠뜨려도 에러 없이 동작해서 발견이 어렵다.
+
+   // 2. Provider로 감싸기
+   // App.jsx
+   const App = () => {
+      return (
+         <AnyContext.Provider value={data}>
+            <Header /> // Header 컴포넌트가 생성됐다고 가정
+         </AnyContext.Provider>
+      )
+   }
+
+   // 3. useContext로 사용
+   // Header.jsx
+   import { useContext } from "react";
+   import { AnyContext } from "./AnyContext";
+
+   const Header = () => {
+      const data = useContext(AnyContext);
+
+      return (
+         <div>
+            {data.map((item) => (
+              <div key={item.id}>
+                {item.id} / {item.name} / {item.content}
+              </div>
+            ))}
+         </div>
+      )
+   }
+   ```  **********************************************************************************************************************
 
 # React Router
 - npmjs.com 에 등록되어 있는 라이브러리이며, 대다수의 리액트 앱이 이 라이브러리를 사용중이다.
