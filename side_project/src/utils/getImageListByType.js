@@ -2,7 +2,7 @@ export const getImageListByType = (type) => {
   let modules;
 
   switch (type) {
-    case "엔터테이먼트":
+    case "엔터테인먼트":
       modules = import.meta.glob("/src/assets/enter/*.{png,jpg,webp,svg}", {
         eager: true,
       });

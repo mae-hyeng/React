@@ -9,11 +9,14 @@ const Background = () => {
   const [activeId, setActiveId] = useState(null);
   const [folderPositions, setFolderPositions] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
-
-  // 현재 마우스 위치 담을 state
-
-  // Todo 배경 길게 눌렀을 때 폴더추가 버튼 생성.
   const [FolderName, setFolderName] = useState(mokeFolderName);
+
+  // Todo 길게 눌렀을 때 삭제 버튼 표시 및 삭제 기능 추가
+  const onLongPressDelete = () => {
+    setTimeout(() => {
+      console.log("길게 누름");
+    }, 600);
+  };
 
   const onClickFolder = (e, id) => {
     if (
@@ -35,7 +38,12 @@ const Background = () => {
   };
 
   return (
-    <div className="Background" onClick={closeFolder} ref={containerRef}>
+    <div
+      className="Background"
+      onClick={closeFolder}
+      // onMouseDown={onLongPressDelete}
+      ref={containerRef}
+    >
       <div className="Folder_wrapper">
         {FolderName.map((name, idx) => {
           const img = getImageListByType(name.toLowerCase());

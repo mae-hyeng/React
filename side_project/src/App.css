@@ -1,8 +1,9 @@
 .App {
   margin: 0 auto;
   width: 500px;
-  height: 100vh;
   background-image: url("./assets/main_background.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   position: relative;
+  background-position: center;
 }

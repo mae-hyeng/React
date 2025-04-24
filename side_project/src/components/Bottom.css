@@ -1,3 +1,40 @@
 .Bottom {
-  height: 10vh;
+  display: flex;
+  height: 15%;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.Bottom .Bottom_wrapper {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: rgba(220, 220, 220, 0.2);
+  border-radius: 50px;
+}
+
+.Bottom .Bottom_wrapper > div {
+  width: 85px;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Bottom > div img {
+  width: 75px;
+  height: 75px;
+}
+
+.Bottom .safari_img img {
+  width: 65px;
+  height: 65px;
+}
+
+.Bottom .kakaotalk_img img {
+  width: 80px;
+  height: 80px;
 }
