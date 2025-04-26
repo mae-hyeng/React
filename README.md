@@ -232,7 +232,41 @@ SEO | 매우 좋음 | 어려움 | 좋음 | 어려움
                console.log(params.get("value"));
                // /?value=hello 값을 전달시 hello 출력
                ```
-     
+# useEffect
+- useEffect 란? 외부 시스템과 컴포넌트를 동기화하는 React Hook.
+1. useEffect(setup, dependencies?)
+```jsx
+useEffect(() => {}, [])
+```
+   - 1. 컴포넌트가 DOM에 추가된 이후 setup함수 실행.
+   - 2. dependencies 중 하나가 변경시 이전 정리 함수 먼저 실행.
+   - 3. 컴포넌트가 DOM에서 제거된 경우에도 정리 함수 실행.
+   ```jsx
+   // 예제
+   function useEf ({ count }) {
+      useEffect(() => {
+         console.log("setup 함수 시작 count = ", count);
+
+         return () => {
+            console.log("정리 함수 시작 count = ", count);
+         };
+      }, [count]);
+
+      return <div>{count}</div>
+   }
+   // 1. useEF를 처음 렌더링
+   // 2. 렌더링 완료 후 setup 함수 실행. return한 정리 함수는 저장만 하고 아직 실행 안함.
+   //    ("setup 함수 시작 count = 0" 출력)
+   // 3. dependencies 변경시 (현재 예제에서 count) 가 0에서 1로 바뀌면서 useEF가 리렌더링 됨.
+   // 4. 먼저 이전에 저장해뒀던 정리 함수 호출.
+   //    ("정리 함수 시작 count = 0" 출력)
+   //    (이때 count값은 이전 값 기준으로 정리하기 때문에 count는 0임)
+   // 5. 그 다음 새 setup 함수 실행.
+   //    ("setup 함수 시작 count = 1" 출력)
+   //    (이후 count=1 기준으로 새로운 effect 적용)
+   // 6. useEF가 더 이상 필요 없어질 때(언마운트), 마지막으로 저장된 정리 함수를 실행.
+   //    ("정리 함수 시작 count = 1" 출력)
+   ```
   
 # Diary 프로젝트
 1. 순서 (보통 페이지 라우팅 -> 글로벌 레이아웃 설정 -> 공통 컴포넌트 구현 -> 개별 페이지 구현 및 복잡한 기능 구현)
