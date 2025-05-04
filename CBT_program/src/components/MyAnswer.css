@@ -1,0 +1,26 @@
+.MyAnswer input {
+  width: 40px;
+  outline: none;
+  text-align: center;
+}
+
+.MyAnswer-wrapper {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+
+.MyAnswer-num {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: gray;
+  color: white;
+  padding: 4px;
+}
+
+.wrong {
+  color: white;
+  background-color: crimson;
+}
